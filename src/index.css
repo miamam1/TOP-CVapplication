@@ -1,0 +1,25 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+p {
+    margin: 0;
+}
+
+
+.WholePage {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 95vh;
+}
+
+.inputs, .outputs {
+    display: flex;
+    flex-direction: column;
+    border: solid 2.3px black;
+    width: 35%;
+    min-height: 80vh;
+    align-items: center;
+}
+
