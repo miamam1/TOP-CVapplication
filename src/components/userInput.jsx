@@ -1,13 +1,34 @@
 import { useState } from 'react'
-
-function PersonalInformation() {
+import { Experiences } from './experienceInput'
+function MainPage() {
     const [personalDetails, setPersonalDetails] = useState([
         {id: crypto.randomUUID(), input: "First name:", output: "John"},
         {id: crypto.randomUUID(), input: "Second name:", output: "Smith"},
         {id: crypto.randomUUID(), input: "Email:", output: "JohnSmith@gmail.com"},
         {id: crypto.randomUUID(), input: "Phone number:", output: "06302631313"},
     ])
+    return (
+    <div className="WholePage">
+        <div className='inputs'>
+            <h3>Personal details</h3>
+            <PersonalInformation 
+            personalDetails={personalDetails} 
+            setPersonalDetails={setPersonalDetails}
+            ></PersonalInformation>
+            <h3>Experiences </h3>
+            <Experiences></Experiences>
+        </div>
+        <div className="outputs">
+            <h3>Final output</h3>
+            <Output 
+            personalDetails={personalDetails}
+            ></Output>
+        </div>
+    </div>
+    )
+}
 
+function PersonalInformation({personalDetails, setPersonalDetails}) {
     const [submit, setSubmit] = useState("active")
     const [edit, setEdit] = useState("inactive")
     const [active, setActive] = useState(false)
@@ -22,19 +43,19 @@ function PersonalInformation() {
             setEdit("inactive")
         }
     }
-    
    return (
-    <div className='WholePage'>
-        <div className='inputs'>
-            <h2>Personal information:</h2>
+    <>
             {personalDetails.map((info) => (
-                <Input 
-                    key = {info.id}
-                    label = {info.input}
+               <label
+               key = {info.id}
+               >
+                {info.input}
+                <input
+                    disabled = {active}
                     value = {info.output}
-                    onChange={((e) => setPersonalDetails([...personalDetails], info.output = e.target.value))}
-                    active = {active}   
-                ></Input>
+                    onChange = {((e) => setPersonalDetails([...personalDetails], info.output = e.target.value))}
+                ></input>
+               </label>
             ))}
             <div>
                 <button
@@ -46,38 +67,18 @@ function PersonalInformation() {
                 onClick={onSubmit}
                 >Submit</button>
             </div>
-           
-        </div>
-        <div className='outputs'>
-            {personalDetails.map((info) => (
-                <Output
-                    key = {info.id}
-                    label = {info.input}
-                    value = {info.output}
-                ></Output>
-            ))}
-        </div>
-    </div>
+   </>
    )  
 }
 
-function Input({label, value, onChange, active}) {
-    return (
-        <label>
-            {label}
-            <input
-                disabled={active}
-                value={value}
-                onChange={onChange}
-            />
-        </label>
-    )
-}
 
-
-function Output({label, value}) {
+function Output({personalDetails}) {
     return (
-        <p> {label}  {value} </p>
+        <>
+        {personalDetails.map((info) => (
+            <p key = {info.id}> {info.input} {info.output} </p>
+        ))}
+        </>
     )
 }
 
@@ -86,4 +87,4 @@ function Output({label, value}) {
 // need to have two things basically one form and one final product/draft
 // need to be able to add multiple education / work exp (both very similar so should use reusable components)
 // check last two lessons very useful for this
-export { PersonalInformation, Input, Output}
+export {MainPage}
