@@ -16,10 +16,25 @@ p {
 
 .inputs, .outputs {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
+    align-items: center;
     border: solid 2.3px black;
     width: 35%;
     min-height: 80vh;
-    align-items: center;
+}
+
+
+
+
+
+.inputs .inactive {
+    display: none;
+}
+
+.inputs input:disabled {
+    border: none;
+    background: none;
+    color: black;
 }
 

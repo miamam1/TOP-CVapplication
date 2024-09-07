@@ -1,56 +1,72 @@
 import { useState } from 'react'
 
 function PersonalInformation() {
-   const [fullName, setFullName] = useState('John Smith')
-   const[email, setEmail] = useState('JohnSmith@gmail.com')
-   const [phoneNumber, setPhonenumber] = useState('+22 06302 631313')
+    const [personalDetails, setPersonalDetails] = useState([
+        {id: crypto.randomUUID(), input: "First name:", output: "John"},
+        {id: crypto.randomUUID(), input: "Second name:", output: "Smith"},
+        {id: crypto.randomUUID(), input: "Email:", output: "JohnSmith@gmail.com"},
+        {id: crypto.randomUUID(), input: "Phone number:", output: "06302631313"},
+    ])
 
-   function inputHandler(e, setFunction) {
-        setFunction(e.target.value)      
-   }
-   
+    const [submit, setSubmit] = useState("active")
+    const [edit, setEdit] = useState("inactive")
+    const [active, setActive] = useState(false)
+    function onSubmit() {
+        if(submit == "active") {
+            setSubmit("inactive")
+            setEdit("active")
+            setActive(true)
+        } else {
+            setSubmit("active")
+            setActive(false)
+            setEdit("inactive")
+        }
+    }
+    
    return (
     <div className='WholePage'>
         <div className='inputs'>
-            <Input
-                label="Full name"
-                value = {fullName}
-                onChange = {(e) => inputHandler(e, setFullName)}
-            />
-            <Input
-                label="Email"
-                value = {email}
-                onChange = {(e) => inputHandler(e, setEmail)}
-            />
-            <Input
-                label="Phone number"
-                value = {phoneNumber}
-                onChange = {(e) => inputHandler(e, setPhonenumber)}
-            />
+            <h2>Personal information:</h2>
+            {personalDetails.map((info) => (
+                <Input 
+                    key = {info.id}
+                    label = {info.input}
+                    value = {info.output}
+                    onChange={((e) => setPersonalDetails([...personalDetails], info.output = e.target.value))}
+                    active = {active}   
+                ></Input>
+            ))}
+            <div>
+                <button
+                className={edit}
+                onClick={onSubmit}
+                >Edit</button>
+                <button
+                className={submit}
+                onClick={onSubmit}
+                >Submit</button>
+            </div>
+           
         </div>
         <div className='outputs'>
-            <Output
-                label = "Full name"
-                value = {fullName}
-            />
-            <Output
-                label = "Email"
-                value = {email}
-            />
-            <Output
-            label = "Phone number"
-            value = {phoneNumber}
-            />
+            {personalDetails.map((info) => (
+                <Output
+                    key = {info.id}
+                    label = {info.input}
+                    value = {info.output}
+                ></Output>
+            ))}
         </div>
     </div>
    )  
 }
 
-function Input({label, value, onChange}) {
+function Input({label, value, onChange, active}) {
     return (
         <label>
             {label}
             <input
+                disabled={active}
                 value={value}
                 onChange={onChange}
             />
@@ -61,7 +77,7 @@ function Input({label, value, onChange}) {
 
 function Output({label, value}) {
     return (
-        <p> {label} : {value} </p>
+        <p> {label}  {value} </p>
     )
 }
 

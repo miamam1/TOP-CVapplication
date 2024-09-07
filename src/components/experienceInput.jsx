@@ -1,13 +1,19 @@
 import { useState } from 'react'
 
+function Experiences() {
+
+}
 
 
+export {Experiences}
 /*
-needs edit and submit
-cant be static like userinput states but also cant use conditionals when kaing use states (i think) which includes for loops
-needs to be a top level statement, like import kinda
-need to rethink approach for this one but idk how 
-me when the lobotomy 
+could probably re use some logic from userinput
+try not to put evertying in one function probably
+uhh needs to have an add thingy which lets yo add another education exp
+so differnt kinda 
+probably shouldnt have all forms at once cus look ugly and confusing 
+yes.
+
 
 
                homepage
