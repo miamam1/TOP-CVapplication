@@ -1,6 +1,7 @@
 import { useState} from 'react'
 
 // try to make as reusable as possible as i can probalby just reuse for rest of inputs and outputs (experiences and educational)
+// TODO:  user is able to edit, submit and close experiences but cant delete or add new experiences
 function Experiences({experiences, setExperiences}) {
     const [active, setActive] = useState('inactive')
     const [showExperiences, setShowExperiences] = useState('experiencesInput')
@@ -19,8 +20,26 @@ function Experiences({experiences, setExperiences}) {
             setShowExperiences('experiencesInput')
         }
     }
+
+    function finder(experiences, currentForm) {
+        experiences.map((experience,index) => {
+            if(experience.id === currentForm.id) {
+                setExperiences([...experiences], 
+                    experience.name = currentForm.name, 
+                    experience.title = currentForm.title,
+                    experience.description = currentForm.description,
+                    experience.dateStart = currentForm.dateStart,
+                    experience.dateEnd = currentForm.dateEnd
+                    )
+                console.log(experiences)
+                return
+            }
+            })
+
+    }
    return (
         <>
+            <button>Add </button>
             {experiences.map((experience) => (
                 <div 
                 className={showExperiences}
@@ -52,6 +71,9 @@ function Experiences({experiences, setExperiences}) {
             </label>
             <button>delete</button>
             <button
+                onClick={() => {finder(experiences, currentForm)
+                        editOnClick(active)           
+                }}
             >submit</button>
             <button
                 onClick={() => (editOnClick(active))}
