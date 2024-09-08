@@ -22,7 +22,7 @@ function Experiences({experiences, setExperiences}) {
     }
 
     function finder(experiences, currentForm) {
-        experiences.map((experience,index) => {
+        experiences.map((experience) => {
             if(experience.id === currentForm.id) {
                 setExperiences([...experiences], 
                     experience.name = currentForm.name, 
@@ -31,11 +31,16 @@ function Experiences({experiences, setExperiences}) {
                     experience.dateStart = currentForm.dateStart,
                     experience.dateEnd = currentForm.dateEnd
                     )
-                console.log(experiences)
+                
                 return
             }
             })
 
+    }
+
+    function deleteOnClick(active, experiences, currentForm) {
+        setExperiences(experiences => experiences.filter(item => item.id !== currentForm.id))
+        editOnClick(active)
     }
    return (
         <>
@@ -51,27 +56,36 @@ function Experiences({experiences, setExperiences}) {
                 > edit</button>
                 </div>
             ))}
-            
+
             <div className={active}>
-            <label>
-                {Object.keys(currentForm)[1]}
-                <input
-                value = {currentForm.name}
-                onChange={((e) => setCurrentForm({...currentForm, name : e.target.value}))}
-                >
-                </input>
-            </label>
-            <label>
-                {Object.keys(currentForm)[2]}
-                <input
-                value = {currentForm.title}
-                onChange={(e) => ( setCurrentForm({...currentForm, title : e.target.value}))}
-                >
-                </input>
-            </label>
-            <button>delete</button>
+            {Object.keys(currentForm).map(function(key) {
+                if(key === "id") {
+                    return
+                } else {
+                    return (
+                        <label
+                            key = {key}
+                        >
+                            {key}
+                            <input
+                                value = {currentForm[key]}
+                                onChange={(e) => {
+                                    setCurrentForm({...currentForm, [key] : e.target.value})
+                                }}
+                            ></input>
+                        </label>
+                    )
+                    
+                }
+            })}
             <button
-                onClick={() => {finder(experiences, currentForm)
+                onClick={() => {
+                    deleteOnClick(active, experiences, currentForm)
+                }}
+            >delete</button>
+            <button
+                onClick={() => {
+                        finder(experiences, currentForm)
                         editOnClick(active)           
                 }}
             >submit</button>
