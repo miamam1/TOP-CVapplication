@@ -14,13 +14,19 @@ p {
     min-height: 95vh;
 }
 
-.inputs, .outputs {
+.inputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.outputs {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
+    justify-content: space-evenly;
     border: solid 2.3px black;
-    width: 35%;
+    min-width: 35%;
     min-height: 80vh;
 }
 
@@ -28,7 +34,7 @@ p {
 
 
 
-.inputs .inactive {
+ .inactive {
     display: none;
 }
 
@@ -38,3 +44,11 @@ p {
     color: black;
 }
 
+
+.experiencesInput {
+    background-color: red;
+}
+
+.experienceForm {
+    background-color: orange;
+}
