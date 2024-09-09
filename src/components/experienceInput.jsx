@@ -44,25 +44,48 @@ function Experiences({experiences, setExperiences}) {
    return (
         <>
             <button
+            className='add'
             onClick={() => {
                 editOnClick(active)
             }}
             
             >Add </button>
             {experiences.map((experience) => (
-                <div 
+                <div
                 className={showExperiences}
                 key = {experience.id}
                 >
                 <p> {experience.title} </p>
-                <button 
+                <button
+                 className='editIcon'
                  onClick={() => (editOnClick(active, experience))}
-                > edit</button>
+                > ✎ </button>
                 </div>
             ))}
 
             <div className={active}>
             {Object.keys(currentForm).map(function(key) {
+                let required = "*"
+                let type = 'input'
+                if(key === "dateStart" || key === "dateEnd") type = 'date'
+                if(key === "description") {
+                    required = ""
+                    return (
+                        <label
+                            className='formLabel'
+                            key = {key}
+                        >
+                            {key + required} 
+                            <textarea
+                                type= {type}
+                                value = {currentForm[key]}
+                                onChange={(e) => {
+                                    setCurrentForm({...currentForm, [key] : e.target.value})
+                                }}
+                            ></textarea>
+                        </label>
+                    )
+                }
                 if(key === "id") {
                     return
                 } else {
@@ -70,8 +93,9 @@ function Experiences({experiences, setExperiences}) {
                         <label
                             key = {key}
                         >
-                            {key}
+                            {key + required} 
                             <input
+                                type= {type}
                                 value = {currentForm[key]}
                                 onChange={(e) => {
                                     setCurrentForm({...currentForm, [key] : e.target.value})

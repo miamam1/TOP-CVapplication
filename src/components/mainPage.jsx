@@ -41,7 +41,7 @@ function MainPage() {
             
         </div>
         <div className="outputs">
-            <h3>Final output</h3>
+            <h3>Ciruculum vitae - Final</h3>
             <Output 
             personalDetails={personalDetails}
             ></Output>

@@ -17,10 +17,11 @@ function PersonalInformation({personalDetails, setPersonalDetails}) {
     }
    return (
     <>
+            <div className={`${submit} personalDetailsForm`}>
             {personalDetails.map((info) => (
                <label
                key = {info.id}
-               className = {submit}
+               
                >
                 {info.input}
                 <input
@@ -30,13 +31,14 @@ function PersonalInformation({personalDetails, setPersonalDetails}) {
                 ></input>
                </label>
             ))}
+            </div>
             <div>
                 <button
-                className={edit}
+                className= {`${edit} edit`}
                 onClick={onSubmit}
                 >Edit</button>
                 <button
-                className={submit}
+                className={`${submit} personalButton`}
                 onClick={onSubmit}
                 >Submit</button>
             </div>

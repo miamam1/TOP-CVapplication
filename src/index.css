@@ -1,41 +1,79 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+    
 }
 p {
     margin: 0;
 }
 
+h3 {
+    margin: 0;
+}
+
+button {
+    align-self: start;
+    cursor: pointer;
+    background-color: transparent;
+    border: 2.3px solid black;
+}
+
 
 .WholePage {
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    min-height: 95vh;
+    justify-content: center;
+    min-height: 100vh;
+    
 }
 
 .inputs {
-    display: flex;
-    flex-direction: column;
+   display: flex;
+   flex-direction: column;
+   min-width: 50%;
+    /* make inputs look pretty first then output */
+    
 }
 
-.outputs {
+.personalDetailsForm {
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    border: solid 2.3px black;
-    min-width: 35%;
-    min-height: 80vh;
+    gap: 2.5px;
+    
+}
+
+.inputs h3 {
+    font-size: 1.5rem;
 }
 
 
+.add {
+    font-size: 1rem;
+}
 
 
+.edit {
+    border: 2.3px dashed black;
+    font-size: 1rem;
+}
+
+.editIcon {
+    border: none;
+    padding: none;
+    margin: none;
+    font-size: 1rem;
+}
+
+.active {
+    opacity: 1;
+    transition: all 1s ease-out;
+}
 
  .inactive {
-    display: none;
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
 }
 
 .inputs input:disabled {
@@ -44,11 +82,32 @@ p {
     color: black;
 }
 
+.inputs input {
+    border: 2.3px solid black;
+}
+
+.inputs label {
+    align-self: start;
+}
+.inputs textarea {
+    border: 2.3px solid black;
+}
 
 .experiencesInput {
-    background-color: red;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 .experienceForm {
-    background-color: orange;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    gap: 5px;
+}
+
+
+.formLabel {
+    display: flex;
+
 }
