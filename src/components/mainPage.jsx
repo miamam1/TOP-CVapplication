@@ -11,14 +11,14 @@ function MainPage() {
     ])
 
     const [education, setEducation] = useState([
-            {id: crypto.randomUUID(), name: "Cool primary school", title: "High school", description: "School", dateStart: "23/03/25", dateEnd: "23/04/2027"},
-            {id: crypto.randomUUID(), name: "College", title: "Computer scince BSC", description: "School", dateStart: "23/03/25", dateEnd: "23/04/2027"}
+            {id: crypto.randomUUID(), name: "Cool primary school", title: "High school", description: "School", dateStart: "2025-03-27", dateEnd: "2027-04-03"},
+            {id: crypto.randomUUID(), name: "College", title: "Computer scince BSC", description: "School", dateStart: "2025-03-27", dateEnd: "2025-03-27"}
         
     ])
 
     const [experiences, setExperiences] = useState([
-        {id: crypto.randomUUID(), name: "Mcdonalds", title: "Cashier", description: "made burgers", dateStart: "23/03/25", dateEnd: "23/04/2027"},
-        {id: crypto.randomUUID(), name: "Wendy's", title: "Burger flipper", description: "made burgers", dateStart: "23/03/25", dateEnd: "23/04/2027"}
+        {id: crypto.randomUUID(), name: "Mcdonalds", title: "Cashier", description: "made burgers", dateStart: "2025-03-27", dateEnd: "2025-03-27"},
+        {id: crypto.randomUUID(), name: "Wendy's", title: "Burger flipper", description: "made burgers", dateStart: "2025-03-27", dateEnd: "2025-03-27"}
     ])
     return (
     <div className="WholePage">

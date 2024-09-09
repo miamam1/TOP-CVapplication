@@ -6,11 +6,12 @@ function Experiences({experiences, setExperiences}) {
     const [currentForm, setCurrentForm] = useState({
         id: crypto.randomUUID() , name: false, title: false, description: false, dateStart: false , dateEnd : false
     })
-
+    const [copyForm, setCopy] = useState({})
     function editOnClick(active, experience = {id: crypto.randomUUID() , name: "", title: "", description: "", dateStart: "" , dateEnd : ""}) {
         if(active === "inactive") {
             setActive("experienceForm")
             setCurrentForm({...experience})
+            setCopy({...experience})
             setShowExperiences('inactive')
         } else {
             setActive("inactive")
@@ -29,7 +30,7 @@ function Experiences({experiences, setExperiences}) {
                     experiences[i].dateStart = currentForm.dateStart,
                     experiences[i].dateEnd = currentForm.dateEnd
                     )
-                return;
+                return true;
             }
        }
        return setExperiences([...experiences, currentForm])
@@ -58,7 +59,9 @@ function Experiences({experiences, setExperiences}) {
                 <p> {experience.title} </p>
                 <button
                  className='editIcon'
-                 onClick={() => (editOnClick(active, experience))}
+                 onClick={() => {
+                    editOnClick(active, experience)
+                }}
                 > ✎ </button>
                 </div>
             ))}
@@ -81,6 +84,8 @@ function Experiences({experiences, setExperiences}) {
                                 value = {currentForm[key]}
                                 onChange={(e) => {
                                     setCurrentForm({...currentForm, [key] : e.target.value})
+                                    const index = experiences.findIndex(x => x.id === currentForm.id)
+                                    setExperiences([...experiences], experiences[index][key] = e.target.value)
                                 }}
                             ></textarea>
                         </label>
@@ -99,6 +104,8 @@ function Experiences({experiences, setExperiences}) {
                                 value = {currentForm[key]}
                                 onChange={(e) => {
                                     setCurrentForm({...currentForm, [key] : e.target.value})
+                                    const index = experiences.findIndex(x => x.id === currentForm.id)
+                                    setExperiences([...experiences], experiences[index][key] = e.target.value)
                                 }}
                             ></input>
                         </label>
@@ -118,8 +125,17 @@ function Experiences({experiences, setExperiences}) {
                 }}
             >submit</button>
             <button
-                onClick={() => (editOnClick(active))}
-            >close</button>
+                onClick={() => {
+                    setCurrentForm(copyForm)
+                    const index = experiences.findIndex(x => x.id === copyForm.id)
+                    const copy = [...experiences]
+                    copy[index] = {...copyForm}
+                    setExperiences([...copy])
+                    editOnClick(active)
+
+                }
+                }
+            >Cancel</button>
             </div>
         </>
    )
