@@ -1,7 +1,7 @@
 import { useState} from 'react'
 
 // try to make as reusable as possible as i can probalby just reuse for rest of inputs and outputs (experiences and educational)
-// TODO:  user is able to edit, submit and close experiences but cant delete or add new experiences
+// User is able to delete, add and edit experiences and can close out of forms.
 function Experiences({experiences, setExperiences}) {
     const [active, setActive] = useState('inactive')
     const [showExperiences, setShowExperiences] = useState('experiencesInput')
@@ -9,7 +9,7 @@ function Experiences({experiences, setExperiences}) {
         id: crypto.randomUUID() , name: false, title: false, description: false, dateStart: false , dateEnd : false
     })
 
-    function editOnClick(active, experience) {
+    function editOnClick(active, experience = {id: crypto.randomUUID() , name: "", title: "", description: "", dateStart: "" , dateEnd : ""}) {
         if(active === "inactive") {
             setActive("experienceForm")
             setCurrentForm({...experience})
@@ -22,29 +22,35 @@ function Experiences({experiences, setExperiences}) {
     }
 
     function finder(experiences, currentForm) {
-        experiences.map((experience) => {
-            if(experience.id === currentForm.id) {
+       for(let i = 0; i < experiences.length; i++) {
+            if(experiences[i].id === currentForm.id) {
                 setExperiences([...experiences], 
-                    experience.name = currentForm.name, 
-                    experience.title = currentForm.title,
-                    experience.description = currentForm.description,
-                    experience.dateStart = currentForm.dateStart,
-                    experience.dateEnd = currentForm.dateEnd
+                    experiences[i].name = currentForm.name, 
+                    experiences[i].title = currentForm.title,
+                    experiences[i].description = currentForm.description,
+                    experiences[i].dateStart = currentForm.dateStart,
+                    experiences[i].dateEnd = currentForm.dateEnd
                     )
-                
-                return
+                return;
             }
-            })
-
+       }
+       return setExperiences([...experiences, currentForm])
+            
     }
+    
 
-    function deleteOnClick(active, experiences, currentForm) {
+    function deleteOnClick(active, currentForm) {
         setExperiences(experiences => experiences.filter(item => item.id !== currentForm.id))
         editOnClick(active)
     }
    return (
         <>
-            <button>Add </button>
+            <button
+            onClick={() => {
+                editOnClick(active)
+            }}
+            
+            >Add </button>
             {experiences.map((experience) => (
                 <div 
                 className={showExperiences}
@@ -80,7 +86,7 @@ function Experiences({experiences, setExperiences}) {
             })}
             <button
                 onClick={() => {
-                    deleteOnClick(active, experiences, currentForm)
+                    deleteOnClick(active, currentForm)
                 }}
             >delete</button>
             <button
