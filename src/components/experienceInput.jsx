@@ -85,7 +85,7 @@ function Experiences({experiences, setExperiences}) {
                                 onChange={(e) => {
                                     setCurrentForm({...currentForm, [key] : e.target.value})
                                     const index = experiences.findIndex(x => x.id === currentForm.id)
-                                    setExperiences([...experiences], experiences[index][key] = e.target.value)
+                                    if(index !== -1) setExperiences([...experiences], experiences[index][key] = e.target.value)
                                 }}
                             ></textarea>
                         </label>
@@ -95,7 +95,8 @@ function Experiences({experiences, setExperiences}) {
                     return
                 } else {
                     return (
-                        <label
+                        <label 
+                            className='inputLabel'
                             key = {key}
                         >
                             {key + required} 
@@ -105,7 +106,7 @@ function Experiences({experiences, setExperiences}) {
                                 onChange={(e) => {
                                     setCurrentForm({...currentForm, [key] : e.target.value})
                                     const index = experiences.findIndex(x => x.id === currentForm.id)
-                                    setExperiences([...experiences], experiences[index][key] = e.target.value)
+                                    if(index !== -1) setExperiences([...experiences], experiences[index][key] = e.target.value)
                                 }}
                             ></input>
                         </label>
@@ -132,7 +133,6 @@ function Experiences({experiences, setExperiences}) {
                     copy[index] = {...copyForm}
                     setExperiences([...copy])
                     editOnClick(active)
-
                 }
                 }
             >Cancel</button>
