@@ -1,7 +1,5 @@
 import { useState} from 'react'
 
-// try to make as reusable as possible as i can probalby just reuse for rest of inputs and outputs (experiences and educational)
-// User is able to delete, add and edit experiences and can close out of forms.
 function Experiences({experiences, setExperiences}) {
     const [active, setActive] = useState('inactive')
     const [showExperiences, setShowExperiences] = useState('experiencesInput')
@@ -106,18 +104,3 @@ function Experiences({experiences, setExperiences}) {
 
 
 export {Experiences}
-/*
-could probably re use some lo
-gic from userinput
-try not to put evertying in one function probably
-uhh needs to have an add thingy which lets yo add another education exp
-so differnt kinda 
-probably shouldnt have all forms at once cus look ugly and confusing 
-yes.
-
-
-
-               homepage
-               /       /
-input contianer         output container
-*/
