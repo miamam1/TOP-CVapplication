@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import {PersonalInformation, Output} from './personalDetailsInput'
 import { Experiences } from './experienceInput'
-
+// omg hi
 function MainPage() {
     const [personalDetails, setPersonalDetails] = useState([
         {id: crypto.randomUUID(), input: "First name:", output: "John"},
