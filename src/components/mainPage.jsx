@@ -6,7 +6,7 @@ function MainPage() {
     const [personalDetails, setPersonalDetails] = useState([
         {id: crypto.randomUUID(), input: "First name:", output: "John"},
         {id: crypto.randomUUID(), input: "Second name:", output: "Smith"},
-        {id: crypto.randomUUID(), input: "Email:", output: "JohnSmith@gmail.com"},
+        {id: crypto.randomUUID(), input: "email:", output: "JohnSmith@gmail.com"},
         {id: crypto.randomUUID(), input: "Phone number:", output: "06302631313"},
     ])
 
@@ -23,7 +23,7 @@ function MainPage() {
     return (
     <div className="WholePage">
         <div className='inputs'>
-            <h3>Personal details</h3>
+            <h3>Personal details: </h3>
             <PersonalInformation 
             personalDetails={personalDetails} 
             setPersonalDetails={setPersonalDetails}
@@ -41,21 +41,30 @@ function MainPage() {
             
         </div>
         <div className="outputs">
-            <h3>Ciruculum vitae - Final</h3>
             <Output 
             personalDetails={personalDetails}
             ></Output>
+            
+            <h4 className='ExperienceTitle'>Education</h4>
             {education.map((experience) =>
-                <div key={experience.id}>
-                    <p>School: {experience.name}</p>
+                <div 
+                    key={experience.id}
+                    className='experienceContainer'
+                >
+                    <h5>School: {experience.name}</h5>
                     <p>Study: {experience.title}</p>
                     {experience.description !== "" && <p> Description: {experience.description} </p>}
                     <p>{experience.dateStart} to {experience.dateEnd} </p>
                 </div>
             )}
+
+            <h4 className='ExperienceTitle' >Experience</h4>
             {experiences.map((experience) =>
-                <div key={experience.id}>
-                    <p>Company: {experience.name}</p>
+                <div 
+                key={experience.id}
+                className='experienceContainer'
+                >
+                    <h5>Company: {experience.name}</h5>
                     <p>Position: {experience.title}</p>
                     <p> Role description: {experience.description} </p>
                     <p>{experience.dateStart} to {experience.dateEnd} </p>

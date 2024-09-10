@@ -49,17 +49,16 @@ function PersonalInformation({personalDetails, setPersonalDetails}) {
 
 function Output({personalDetails}) {
     return (
-        <>
-        {personalDetails.map((info) => (
-            <p key = {info.id}> {info.input} {info.output} </p>
-        ))}
-        </>
+        <div className='outputPersonalDetails'>
+            <h2> {personalDetails[0].output + " " + personalDetails[1].output} </h2>
+            <div className='contactInfo'>
+            <p>  ✉️ {personalDetails[2].output} </p>
+            <p> 📞 {personalDetails[3].output} </p>
+            </div>
+        </div>
     )
 }
 
 
-//  needs to be subbmited then do also think about making this code as reusable as possible 
-// need to have two things basically one form and one final product/draft
-// need to be able to add multiple education / work exp (both very similar so should use reusable components)
-// check last two lessons very useful for this
+
 export {PersonalInformation, Output}
